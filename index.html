@@ -14,7 +14,7 @@
 
   <div class="container">
     <main>
-      <form action="">
+      <form onsubmit="event.preventDefault(); return validatePassword();">
         <div class="row mt-4">
           <div class="col">
             <h1 class="mb-3">Registro</h1>
@@ -37,9 +37,9 @@
 
               <div class="col-sm-6">
                 <label for="password1" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="password1" minlength="6" required> 
+                <input type="password" class="form-control" id="password1" minlength="6" required>
               </div>
-              
+
               <div class="col-sm-6">
                 <label for="password2" class="form-label">Repetir contraseña</label>
                 <input type="password" class="form-control" id="password2" minlength="6" required>
@@ -79,6 +79,21 @@
 
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/validacion.js"></script>
+  <script>
+    function validatePassword() {
+      const password1 = document.getElementById("password1").value;
+      const password2 = document.getElementById("password2").value;
+
+      if (password1 !== password2) {
+        showAlertError();
+        alert("Las contraseñas no coinciden, intentalo de nuevo");
+      } else {
+        showAlertSuccess();
+      }
+      return false
+    }
+  </script>
+
 </body>
 
 </html>
